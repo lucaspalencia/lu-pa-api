@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "~=3.7.7"
+pytest = "~=5.0.1"
+pytest-cov = "~=2.7.1"
+
+[packages]
+flask = "~=1.1.1"
+flask_restful = "~=0.3.0"
+psycopg2-binary = "~=2.8.3"
+Flask-Migrate = "~=2.5.2"
+Flask-Script = "~=2.0.6"
+
+[requires]
+python_version = "3.7"
