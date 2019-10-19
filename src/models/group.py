@@ -10,7 +10,7 @@ group_teams = db.Table('group_teams',
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=False)
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'), nullable=False)
     
     # relationships
     teams = db.relationship('Team', secondary=group_teams, lazy='subquery')

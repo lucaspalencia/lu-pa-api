@@ -5,6 +5,7 @@ from flask_script import Manager
 
 from src.app import create_app
 from src.models import db
+from src.seeds import run_seeds
 
 app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 db.init_app(app)
@@ -18,6 +19,9 @@ manager.add_command('db', MigrateCommand)
 def run():
     app.run(host='0.0.0.0')
 
+@manager.command
+def seed():
+    run_seeds()
 
 if __name__ == '__main__':
     manager.run()
