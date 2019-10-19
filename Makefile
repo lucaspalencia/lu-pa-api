@@ -48,6 +48,9 @@ db-upgrade:
 db-downgrade:
 	$(call app-run, pipenv run python ./manage.py db downgrade)
 
+db-seed:
+	$(call app-run, pipenv run python ./manage.py seed)
+
 shell: | ensure-network
 	$(call app-run, bash)
 

@@ -41,9 +41,9 @@ def run_playoff_matches_seed():
             pprint(winners[0]['team'])
             event.won_team_id = winners[0]['team'].id
 
-    # db.session.bulk_save_objects(playoff_matches)
-    # db.session.add(event)
-    # db.session.commit()
+    db.session.bulk_save_objects(playoff_matches)
+    db.session.add(event)
+    db.session.commit()
 
 
 def simulate_playoff_round(playoff_matches_teams, event):
