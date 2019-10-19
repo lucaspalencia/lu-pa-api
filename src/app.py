@@ -12,6 +12,7 @@ logging.basicConfig(
     datefmt="%d/%m/%y %H:%M:%S",
 )
 
+
 def create_app(environment):
     app = Flask(__name__)
     app.config.from_object(config_by_environment[environment])

@@ -1,3 +1,4 @@
+# flake8: noqa
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()

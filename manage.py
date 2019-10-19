@@ -19,9 +19,11 @@ manager.add_command('db', MigrateCommand)
 def run():
     app.run(host='0.0.0.0')
 
+
 @manager.command
 def seed():
     run_seeds()
+
 
 if __name__ == '__main__':
     manager.run()

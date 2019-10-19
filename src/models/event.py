@@ -10,13 +10,21 @@ class Event(db.Model):
     start_date = db.Column(db.DateTime, nullable=False)
     end_date = db.Column(db.DateTime, nullable=False)
     won_team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
-    
+
     # relationships
     groups = db.relationship('Group', backref='event', lazy=True)
-    playoff_matches = db.relationship('PlayoffMatch', backref='event', lazy=True)
+    playoff_matches = db.relationship(
+        'PlayoffMatch',
+        backref='event',
+        lazy=True
+    )
 
     # timestamps
     created_on = db.Column(db.DateTime, default=datetime.now)
-    updated_on = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
+    updated_on = db.Column(
+        db.DateTime,
+        default=datetime.now,
+        onupdate=datetime.now
+    )
 
     __tablename__ = 'events'
