@@ -1,15 +1,18 @@
 import itertools
 
+from datetime import datetime
+
 from src.models import db, Group, GroupMatch
 from src.models.match_status import MatchStatus
 from src.common.match_simulator import MatchSimulator
+from src.common.datetime_format import ISO_DATETIME_FORMAT
 
 
 def create_group_match(group, team1, team2):
     match_scores = MatchSimulator.simulate_match(team1, team2)
 
     return GroupMatch(
-        date='2019-10-17 06:09:38',
+        date=datetime.now().strftime(ISO_DATETIME_FORMAT),
         status=MatchStatus.OVER.value,
         group_id=group.id,
         team1_id=team1.id,
@@ -30,7 +33,7 @@ def run_group_matches_seed():
 
     for group in groups:
         teams = group.teams
-        # teams_range = range(1, len(teams) + 1)
+
         group_matches_teams = list(itertools.combinations(teams, 2))
 
         for group_match_teams in group_matches_teams:

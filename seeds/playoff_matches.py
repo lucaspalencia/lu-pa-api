@@ -1,11 +1,13 @@
 import random
+import logging
+
 from pprint import pprint
+from datetime import datetime
 
 from src.models import db, Group, Event, PlayoffMatch
 from src.models.match_status import MatchStatus
 from src.common.match_simulator import MatchSimulator
-
-import logging
+from src.common.datetime_format import ISO_DATETIME_FORMAT
 
 
 def run_playoff_matches_seed():
@@ -39,9 +41,9 @@ def run_playoff_matches_seed():
             pprint(winners[0]['team'])
             event.won_team_id = winners[0]['team'].id
 
-    db.session.bulk_save_objects(playoff_matches)
-    db.session.add(event)
-    db.session.commit()
+    # db.session.bulk_save_objects(playoff_matches)
+    # db.session.add(event)
+    # db.session.commit()
 
 
 def simulate_playoff_round(playoff_matches_teams, event):
@@ -82,7 +84,7 @@ def simulate_playoff_round(playoff_matches_teams, event):
 
 def create_playoff_match(event, team1, team2, team1_score, team2_score):
     return PlayoffMatch(
-        date='2019-10-17 06:09:38',
+        date=datetime.now().strftime(ISO_DATETIME_FORMAT),
         status=MatchStatus.OVER.value,
         event_id=event.id,
         team1_id=team1.id,

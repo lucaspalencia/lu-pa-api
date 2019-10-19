@@ -8,7 +8,7 @@ def run_events_seed():
         return
 
     event = Event(
-        name='Evento Teste',
+        name='Campeonato ZIC4 D4 B4L4D4',
         start_date='2019-10-17 06:09:38',
         end_date='2019-11-17 06:09:38',
     )
