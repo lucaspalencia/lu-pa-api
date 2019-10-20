@@ -1,5 +1,12 @@
-postgres_local_base = 'postgresql://dev:dev@database:5432/gamersclub'
+import os
 
+DATABASE_HOST = os.getenv('DATABASE_HOST')
+DATABASE_PORT = os.getenv('DATABASE_PORT')
+DATABASE_NAME = os.getenv('DATABASE_NAME')
+DATABASE_USER = os.getenv('DATABASE_USER')
+DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
+
+postgres_base = f'postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}'
 
 class BaseConfig(object):
     DEBUG = False
@@ -8,15 +15,15 @@ class BaseConfig(object):
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = postgres_local_base
+    SQLALCHEMY_DATABASE_URI = postgres_base
 
 
 class TestingConfig(BaseConfig):
-    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = postgres_base
 
 
 class ProductionConfig(BaseConfig):
-    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = postgres_base
 
 
 config_by_environment = dict(

@@ -23,6 +23,10 @@ class PlayoffMatch(db.Model):
     team2_id = db.Column(db.Integer, db.ForeignKey('teams.id'), nullable=False)
     team2_score = db.Column(db.Integer)
 
+    # relationships
+    team1 = db.relationship('Team', foreign_keys=[team1_id])
+    team2 = db.relationship('Team', foreign_keys=[team2_id])
+
     # timestamps
     created_on = db.Column(db.DateTime, default=datetime.now)
     updated_on = db.Column(

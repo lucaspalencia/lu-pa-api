@@ -42,7 +42,8 @@ class Group(db.Model):
 
     __tablename__ = 'groups'
 
-    def get_classified_teams(self):
+    @property
+    def ordered_teams(self):
         teams_results = []
 
         for match in self.matches:
@@ -90,4 +91,8 @@ class Group(db.Model):
             reverse=True
         )
 
-        return teams_results_sorted[:2]
+        return teams_results_sorted
+
+    def get_classified_teams(self):
+        teams_results = self.ordered_teams
+        return teams_results[:2]

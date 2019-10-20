@@ -1,11 +1,10 @@
 from src.models.event import Event
+from src.dtos.event import Event as EventDtos
+
 
 class GetEventCommand():
-    def execute(self):
-        event = Event.query.first()
-        
-        return {
-            'name': event.name,
-            'startDate': event.start_date,
-            'endDate': event.end_date
-        }
+    def execute(self, event_id):
+        event = Event.query.filter_by(id=event_id).first()
+        if not event:
+            return {}
+        return EventDtos(event).to_dict()

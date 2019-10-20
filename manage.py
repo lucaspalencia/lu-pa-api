@@ -7,7 +7,7 @@ from src.app import create_app
 from src.models import db
 from seeds import run_seeds
 
-app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
+app = create_app(os.getenv('ENVIRONMENT') or 'dev')
 db.init_app(app)
 
 migrate = Migrate(app, db)
