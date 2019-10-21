@@ -4,8 +4,11 @@ from flask.json import jsonify
 from http import HTTPStatus
 from src.models import db
 
+import logging
+
 HEALTH_UP = 'up'
 HEALTH_DOWN = 'down'
+
 
 
 class HealthCheckController(Resource):
@@ -42,6 +45,8 @@ class HealthCheckController(Resource):
                 'latency': latency.total_seconds()
             }
         except Exception as ex:
+            logging.debug(ex)
+            logging.error(ex)
             return {
                 'status': HEALTH_DOWN,
                 'error': ex.__class__.__name__
