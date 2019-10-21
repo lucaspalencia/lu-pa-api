@@ -1,12 +1,15 @@
 import os
 
 DATABASE_HOST = os.getenv('DATABASE_HOST')
+DATABASE_TEST_HOST = os.getenv('DATABASE_TEST_HOST')
 DATABASE_PORT = os.getenv('DATABASE_PORT')
 DATABASE_NAME = os.getenv('DATABASE_NAME')
+DATABASE_TEST_NAME = os.getenv('DATABASE_TEST_NAME')
 DATABASE_USER = os.getenv('DATABASE_USER')
 DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
 
 postgres_base = f'postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}'  # noqa: E501
+postgres_test_base = f'postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_TEST_HOST}:{DATABASE_PORT}/{DATABASE_TEST_NAME}'  # noqa: E501
 
 
 class BaseConfig(object):
@@ -20,7 +23,8 @@ class DevelopmentConfig(BaseConfig):
 
 
 class TestingConfig(BaseConfig):
-    SQLALCHEMY_DATABASE_URI = postgres_base
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = postgres_test_base
 
 
 class ProductionConfig(BaseConfig):

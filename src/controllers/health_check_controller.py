@@ -10,7 +10,6 @@ HEALTH_UP = 'up'
 HEALTH_DOWN = 'down'
 
 
-
 class HealthCheckController(Resource):
     def get(self):
         database_health_check = self.__database_status()
