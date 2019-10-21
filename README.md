@@ -50,6 +50,8 @@ Endpoints with data:
 
 > When making API calls, you need to send x-api-key in request header with the value that is on your .env file.
 
+> The idea of ​​the event id being a parameter was thinking of a better API modeling. If you need to create other events, entities and relationships are ready for it
+
 ## Tests
 
 To run linter:
