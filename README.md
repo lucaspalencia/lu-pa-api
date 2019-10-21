@@ -26,7 +26,8 @@ make up
 This command will launch these services:
 
 - The API, accessible on [http://localhost:5000/health](http://localhost:5000/health)
-- Postgres on port 5432
+- Postgres database on port 5432
+- Postgres database on port 5433 for running tests
 
 ## Migrations and Seeds
 
