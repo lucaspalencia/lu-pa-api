@@ -12,7 +12,7 @@ def run_teams_seed():
 
     for x in range(TEAMS_QUANTITY):
         teams.append(
-            Team(name=f'Team {x + 1}')
+            Team(name=f'Time {x + 1}')
         )
 
     db.session.bulk_save_objects(teams)

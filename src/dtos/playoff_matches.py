@@ -10,6 +10,7 @@ class PlayoffMatches():
 
         for match in playoff_matches:
             items.append({
+                'id': match.id,
                 'team1': match.team1.name,
                 'team1Score': match.team1_score,
                 'team2': match.team2.name,

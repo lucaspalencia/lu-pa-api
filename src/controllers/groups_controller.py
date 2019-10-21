@@ -1,5 +1,4 @@
 from flask_restful import Resource
-from flask.json import jsonify
 from http import HTTPStatus
 
 from src.common.auth import auth
@@ -13,7 +12,4 @@ class GroupsController(Resource):
         command = ListGroupsByEventCommand()
         groups = command.execute(event_id)
 
-        return jsonify(
-            status=HTTPStatus.OK,
-            data=groups
-        )
+        return groups, HTTPStatus.OK

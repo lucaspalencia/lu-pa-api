@@ -1,5 +1,4 @@
 from flask_restful import Resource
-from flask.json import jsonify
 from http import HTTPStatus
 
 from src.common.auth import auth
@@ -13,7 +12,4 @@ class EventsController(Resource):
         command = GetEventCommand()
         event = command.execute(event_id)
 
-        return jsonify(
-            status=HTTPStatus.OK,
-            data=event
-        )
+        return event, HTTPStatus.OK

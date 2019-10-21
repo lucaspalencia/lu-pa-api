@@ -1,5 +1,4 @@
 from flask_restful import Resource
-from flask.json import jsonify
 from http import HTTPStatus
 
 from src.common.auth import auth
@@ -12,9 +11,6 @@ class PlayoffMatchesController(Resource):
 
     def get(self, event_id):
         command = ListPlayoffMatchesByEventCommand()
-        groups = command.execute(event_id)
+        playoff_matches = command.execute(event_id)
 
-        return jsonify(
-            status=HTTPStatus.OK,
-            data=groups
-        )
+        return playoff_matches, HTTPStatus.OK
