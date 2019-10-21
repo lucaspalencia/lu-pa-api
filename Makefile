@@ -15,9 +15,14 @@ help:
 	@echo "	down			Stop the local environment"
 	@echo "	restart			Restart application"
 	@echo "	logs			Show Logs"
+	@echo "	db-init			Create migrations system"
+	@echo "	db-migrate		Create migrations files by models"
+	@echo "	db-upgrade		Apply migrations on database"
+	@echo "	db-downgrade		Rollback migration"
+	@echo "	db-seed			Apply seeds"
 	@echo "	lint			Run lint"
-	@echo "	shell			Run application shell"
 	@echo "	test			Run application tests and coverage"
+	@echo "	shell			Run application shell"
 
 build: | ensure-network
 	docker-compose build
@@ -51,9 +56,6 @@ db-downgrade:
 db-seed:
 	$(call app-run, pipenv run python ./manage.py seed)
 
-shell: | ensure-network
-	$(call app-run, bash)
-
 lint:
 	$(call app-run-no-deps, pipenv run flake8 .)
 
@@ -64,6 +66,9 @@ test: | ensure-network
 		--junitxml=$(TEST_RESULT) \
 		--cov-report=html:$(COVERAGE_REPORT_HTML) \
 		--cov-report=xml:$(COVERAGE_REPORT_XML))
+
+shell: | ensure-network
+	$(call app-run, bash)
 
 ensure-network:
 ifneq ($(shell docker network ls --filter name=^$(DOCKER_NETWORK_NAME)$$ --format='{{ .Name }}'), $(DOCKER_NETWORK_NAME))
