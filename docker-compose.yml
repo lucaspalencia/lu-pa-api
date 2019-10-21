@@ -10,7 +10,7 @@ services:
     ports:
       - 5000:5000
     networks:
-      - gamersclub
+      - lupa
     volumes:
       - .:/app
       - virtualenvs:/root/.local/share/virtualenvs
@@ -18,18 +18,18 @@ services:
   database:
     image: postgres:11-alpine
     environment:
-      POSTGRES_DB: gamersclub
+      POSTGRES_DB: lupa
       POSTGRES_USER: dev
       POSTGRES_PASSWORD: dev
     ports:
       - 5432:5432
     networks:
-      - gamersclub
+      - lupa
     volumes:
       - database:/var/lib/postgresql/data
 
 networks:
-  gamersclub:
+  lupa:
     external: true
 
 volumes:
